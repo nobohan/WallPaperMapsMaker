@@ -12,7 +12,7 @@ layers = ('osm', 'opencyclemap', 'outdoor', 'hikebikemap', 'stamen', 'stamen_wat
 
 
 # START of the loop, for each layers:
-for ii in range(1,2):
+for ii in range(1,4):
     print(ii)
     
     # 1) Write the input.js file

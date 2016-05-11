@@ -1,1 +1,1 @@
-layer = "osm";
+layer = "outdoor";
