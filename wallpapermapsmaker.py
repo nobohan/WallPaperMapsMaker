@@ -22,7 +22,7 @@ for ii in range(1,4):
     f.close()
 
     # 2) Make a printpage using wkhtmltopdf
-    subprocess.call(['wkhtmltopdf','--dpi','700','--orientation','Landscape','--javascript-delay','8000', './viewer/www/map.html','map'+ str(ii) +'.pdf'])
+    subprocess.call(['wkhtmltopdf','--dpi','700','--orientation','Landscape','--javascript-delay','8000', './viewer/www/map.html','maps/map'+ str(ii) +'.pdf'])
     #subprocess.call(['wkhtmltopdf', './viewer/www/map.html','map.pdf'])
     
     # Rename the old img file
