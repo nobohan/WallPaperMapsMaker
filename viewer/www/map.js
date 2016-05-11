@@ -29,13 +29,13 @@ function init(layer) {
     var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
     var opencyclemap = new OpenLayers.Layer.OSM("OpenCycleMap", ['http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png'],{isBaseLayer:true});
     var outdoor = new OpenLayers.Layer.OSM("OpenCycleMap Outdoor", ['http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png'],{isBaseLayer:true});
-    var hikebikemap = new OpenLayers.Layer.OSM("HikeBikeMap", ['http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png'],{isBaseLayer:true});
     var opentopomap = new OpenLayers.Layer.OSM("OpenTopoMap", ['http://a.tile.opentopomap.org/${z}/${x}/${y}.png','http://b.tile.opentopomap.org/${z}/${x}/${y}.png','http://c.tile.opentopomap.org/${z}/${x}/${y}.png'],{projection: dispproj});
+    var landscape = new OpenLayers.Layer.OSM("Thunderforest Landscape", ['http://a.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/landscape/${z}/${x}/${y}.png']);
 
     var stamen = new OpenLayers.Layer.Stamen("toner");
     var stamen_watercolor = new OpenLayers.Layer.Stamen("watercolor");
-    var stamen_terrain = new OpenLayers.Layer.Stamen("terrain");
-    
+ 
+
     // Google Layers
     var gsat = new OpenLayers.Layer.Google("Google Satellite",{type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22, isBaseLayer:true});
     var gnormal = new OpenLayers.Layer.Google( "Google" , {type: google.maps.MapTypeId.NORMAL, numZoomLevels: 22, isBaseLayer:true});
@@ -47,10 +47,14 @@ function init(layer) {
     var bhybrid = new OpenLayers.Layer.Bing({name: "Bing Hybrid", key: apiKey, type: "AerialWithLabels"});
     var baerial = new OpenLayers.Layer.Bing({name: "Bing Aerial", key: apiKey, type: "Aerial"});
 
+    // deprecated layers in May 2016
+    //var hikebikemap = new OpenLayers.Layer.OSM("HikeBikeMap", ['http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png']); //deprecated
+    //var stamen_terrain = new OpenLayers.Layer.Stamen("terrain"); //deprecated
+ 
 
     layername = eval(layer)
     map.addLayer(layername)
-    //map.addLayers([osm, opencyclemap, outdoor, hikebikemap, opentopomap, stamen, stamen_watercolor, stamen_terrain, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
+    //map.addLayers([osm, opencyclemap, outdoor, landscape, opentopomap, stamen, stamen_watercolor, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
     //map.addLayer(opentopomap) 
 
     // Ajout des controles
