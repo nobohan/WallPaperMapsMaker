@@ -12,7 +12,7 @@ layers = ('osm', 'opencyclemap', 'outdoor', 'hikebikemap', 'stamen', 'stamen_wat
 
 
 # START of the loop, for each layers:
-for ii in range(1,4):
+for ii in range(1,len(layers)):
     print(ii)
     
     # 1) Write the input.js file
@@ -22,11 +22,11 @@ for ii in range(1,4):
     f.close()
 
     # 2) Make a printpage using wkhtmltopdf
-    subprocess.call(['wkhtmltopdf','--dpi','700','--orientation','Landscape','--javascript-delay','8000', './viewer/www/map.html','maps/map'+ str(ii) +'.pdf'])
-    #subprocess.call(['wkhtmltopdf', './viewer/www/map.html','map.pdf'])
+    subprocess.call(['wkhtmltopdf','--dpi','300',
+                     '--orientation','Landscape',
+                     '--javascript-delay','8000',
+                     '--page-size', 'A3',
+                     './viewer/www/map.html',
+                     'maps/map'+ str(ii) +'.pdf'])
     
-    # Rename the old img file
-    #os.rename('map.pdf', 'map'+ str(ii) +'.pdf')
-    
-    # END of the main loop
 

@@ -1,7 +1,7 @@
 // Openlayers - WPMM - Julien Minet - julien_wa@yahoo.fr - Avril 2016
  
 // Parametres generaux et definitions des variables
-var map, gnormal, ghyb, gbase, osm, geojson, communes;
+var map, gnormal, ghyb, gbase, osm, geojson, center;
 var proj = new OpenLayers.Projection("EPSG:3857");
 var dispproj = new OpenLayers.Projection("EPSG:4326");
 var bounds = new OpenLayers.Bounds(4.7, 49.5, 6.2, 50.5);
@@ -30,6 +30,8 @@ function init(layer) {
     var opencyclemap = new OpenLayers.Layer.OSM("OpenCycleMap", ['http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png'],{isBaseLayer:true});
     var outdoor = new OpenLayers.Layer.OSM("OpenCycleMap Outdoor", ['http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png'],{isBaseLayer:true});
     var hikebikemap = new OpenLayers.Layer.OSM("HikeBikeMap", ['http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png'],{isBaseLayer:true});
+    var opentopomap = new OpenLayers.Layer.OSM("OpenTopoMap", ['http://a.tile.opentopomap.org/${z}/${x}/${y}.png','http://b.tile.opentopomap.org/${z}/${x}/${y}.png','http://c.tile.opentopomap.org/${z}/${x}/${y}.png'],{projection: dispproj});
+
     var stamen = new OpenLayers.Layer.Stamen("toner");
     var stamen_watercolor = new OpenLayers.Layer.Stamen("watercolor");
     var stamen_terrain = new OpenLayers.Layer.Stamen("terrain");
@@ -48,15 +50,21 @@ function init(layer) {
 
     layername = eval(layer)
     map.addLayer(layername)
-    //map.addLayers([osm, opencyclemap, outdoor, hikebikemap, stamen, stamen_watercolor, stamen_terrain, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
- 
+    //map.addLayers([osm, opencyclemap, outdoor, hikebikemap, opentopomap, stamen, stamen_watercolor, stamen_terrain, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
+    //map.addLayer(opentopomap) 
+
     // Ajout des controles
     map.addControl(new OpenLayers.Control.Navigation());
-    map.addControl(new OpenLayers.Control.Zoom());
-    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    //map.addControl(new OpenLayers.Control.Zoom());
+    //map.addControl(new OpenLayers.Control.LayerSwitcher());
 
-    var bounds = new OpenLayers.Bounds(5.4, 49.4, 5.55, 49.8); bounds.transform(dispproj,proj);
-    map.zoomToExtent(bounds)
+    //var bounds = new OpenLayers.Bounds(5.4, 49.4, 5.55, 49.8); bounds.transform(dispproj,proj);
+    //map.zoomToExtent(bounds)
+
+    zoom = 15
+    center = new OpenLayers.LonLat(5.54036,49.73822);
+    center.transform(dispproj, proj)
+    map.setCenter(center,zoom)
 
 }     // fin de la fonction init 
 	
