@@ -48,7 +48,7 @@ function init(layer) {
 
     layername = eval(layer)
     map.addLayer(layername)
-    map.addLayers([osm, opencyclemap, outdoor, hikebikemap, stamen, stamen_watercolor, stamen_terrain, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
+    //map.addLayers([osm, opencyclemap, outdoor, hikebikemap, stamen, stamen_watercolor, stamen_terrain, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
  
     // Ajout des controles
     map.addControl(new OpenLayers.Control.Navigation());
