@@ -66,7 +66,9 @@ function init(layer) {
     //map.zoomToExtent(bounds)
 
     zoom = 15
-    center = new OpenLayers.LonLat(5.54036,49.73822);
+    centerPigeon = new OpenLayers.LonLat(5.54036,49.73822);
+    centerArlon = new OpenLayers.LonLat(5.8111,49.6860);
+    center = centerArlon;
     center.transform(dispproj, proj)
     map.setCenter(center,zoom)
 
