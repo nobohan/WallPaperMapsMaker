@@ -26,12 +26,17 @@ function init(layer) {
     
     // Ajout des couches de base
     // OSM Layers
+    // Mapnik
     var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
-    var opencyclemap = new OpenLayers.Layer.OSM("OpenCycleMap", ['http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png'],{isBaseLayer:true});
-    var outdoor = new OpenLayers.Layer.OSM("OpenCycleMap Outdoor", ['http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png'],{isBaseLayer:true});
-    var opentopomap = new OpenLayers.Layer.OSM("OpenTopoMap", ['http://a.tile.opentopomap.org/${z}/${x}/${y}.png','http://b.tile.opentopomap.org/${z}/${x}/${y}.png','http://c.tile.opentopomap.org/${z}/${x}/${y}.png'],{projection: dispproj});
-    var landscape = new OpenLayers.Layer.OSM("Thunderforest Landscape", ['http://a.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/landscape/${z}/${x}/${y}.png']);
-
+    // Thunderforest layers
+    var opencyclemap = new OpenLayers.Layer.OSM("TF OpenCycleMap", ['http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png']);
+    var transport = new OpenLayers.Layer.OSM("TF Transport", ['http://a.tile.thunderforest.com/transport/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/transport/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/transport/${z}/${x}/${y}.png']);
+    var landscape = new OpenLayers.Layer.OSM("TF Landscape", ['http://a.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/landscape/${z}/${x}/${y}.png']);
+    var outdoor = new OpenLayers.Layer.OSM("TF Outdoor", ['http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png']);
+    var transport_dark = new OpenLayers.Layer.OSM("TF Transport-dark", ['http://a.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png']);
+    var spinal_map = new OpenLayers.Layer.OSM("TF Spinal-map (Metal)", ['http://a.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png']);
+ 
+    // Stamen
     var stamen = new OpenLayers.Layer.Stamen("toner");
     var stamen_watercolor = new OpenLayers.Layer.Stamen("watercolor");
  
