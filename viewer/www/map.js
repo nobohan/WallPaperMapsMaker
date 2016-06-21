@@ -40,7 +40,14 @@ function init(layer) {
     var stamen = new OpenLayers.Layer.Stamen("toner");
     var stamen_watercolor = new OpenLayers.Layer.Stamen("watercolor");
  
+    // OpenTopoMap
+    var opentopomap = new OpenLayers.Layer.OSM("OpenTopoMap", ['http://a.tile.opentopomap.org/${z}/${x}/${y}.png','http://b.tile.opentopomap.org/${z}/${x}/${y}.png','http://c.tile.opentopomap.org/${z}/${x}/${y}.png'],{tileOptions: {crossOriginKeyword: null}, numZoomLevels: 16});
 
+    // ESRI maps
+    var ESRI = new OpenLayers.Layer.OSM('ESRI', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${x}.jpg");     
+    var ESRIsatellite = new OpenLayers.Layer.OSM('ESRI Satellite', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}.jpg");     
+    var ESRItopo = new OpenLayers.Layer.OSM('ESRI Topo', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}.jpg");     
+   
     // Google Layers
     var gsat = new OpenLayers.Layer.Google("Google Satellite",{type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22, isBaseLayer:true});
     var gnormal = new OpenLayers.Layer.Google( "Google" , {type: google.maps.MapTypeId.NORMAL, numZoomLevels: 22, isBaseLayer:true});
@@ -56,11 +63,16 @@ function init(layer) {
     //var hikebikemap = new OpenLayers.Layer.OSM("HikeBikeMap", ['http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png']); //deprecated
     //var stamen_terrain = new OpenLayers.Layer.Stamen("terrain"); //deprecated
  
+    // map1eu
+    var map1eu = new OpenLayers.Layer.OSM('map1eu', "http://alpha.map1.eu/tiles/${z}/${x}/${y}.jpg", {
+            tileOptions: {
+                crossOriginKeyword: null
+            },
+            numZoomLevels: 18});  
 
     layername = eval(layer)
     map.addLayer(layername)
     //map.addLayers([osm, opencyclemap, outdoor, landscape, opentopomap, stamen, stamen_watercolor, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
-    //map.addLayer(opentopomap) 
 
     // Ajout des controles
     map.addControl(new OpenLayers.Control.Navigation());

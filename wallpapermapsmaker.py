@@ -8,9 +8,13 @@ from pyPdf import PdfFileWriter, PdfFileReader
 
 # Set list of layers
 layers = ('osm',
-          'opencyclemap', 'outdoor', 'landscape',
+          'opencyclemap', 'transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map',
           'stamen', 'stamen_watercolor',
-          'gsat', 'gbase', 'ghybrid', 'gnormal')
+          'opentopomap',
+          'ESRI', 'ESRIsatellite', 'ESRItopo',
+          'gsat', 'gbase', 'ghybrid', 'gnormal',
+          'map1eu')
+          
 
 # For collating the pdfs
 # Creating a routine that appends files to the output file
@@ -21,7 +25,7 @@ def append_pdf(input,output):
 output = PdfFileWriter()
 
 # START of the loop, for each layers:
-for ii in range(1,len(layers)):
+for ii in range(1,len(layers)+1):
     print(ii)
     
     # 1) Write the input.js file

@@ -1,1 +1,1 @@
-layer = "outdoor";
+layer = "ESRIsatellite";
