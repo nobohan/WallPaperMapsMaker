@@ -9,6 +9,8 @@ Work in progress!!!
 
 Simply download the application and run the wallpapermapsmaker.py script while connected to the internet. 
 
+
+
 ## TAF
 
  * Increase number of layers
@@ -18,10 +20,11 @@ Simply download the application and run the wallpapermapsmaker.py script while c
  * Make a web interface for choosing:
    * extent & zoom level
    * layers to be printed
+ * Host the application
  * Use OpenLayers 3 instead of Openlayers 2
  * Add something to the map, like layer name or something customized
  
- ## Some notes
+## Some notes
  
 An A4 in 300 dpi is 2480 x 3508 px
 An A4 in 200 dpi is 1654 x 2339 px
