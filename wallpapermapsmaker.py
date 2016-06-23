@@ -11,6 +11,7 @@ layers = ('osm',
           'opencyclemap', 'transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map',
           'stamen', 'stamen_watercolor',
           'opentopomap',
+          'wanderreitkarte',
           'ESRI', 'ESRIsatellite', 'ESRItopo',
           'gsat', 'gbase', 'ghybrid', 'gnormal',
           'map1eu')
@@ -25,7 +26,7 @@ def append_pdf(input,output):
 output = PdfFileWriter()
 
 # START of the loop, for each layers:
-for ii in range(1,len(layers)+1):
+for ii in range(1,len(layers)):
     print(ii)
     
     # 1) Write the input.js file

@@ -43,6 +43,9 @@ function init(layer) {
     // OpenTopoMap
     var opentopomap = new OpenLayers.Layer.OSM("OpenTopoMap", ['http://a.tile.opentopomap.org/${z}/${x}/${y}.png','http://b.tile.opentopomap.org/${z}/${x}/${y}.png','http://c.tile.opentopomap.org/${z}/${x}/${y}.png'],{tileOptions: {crossOriginKeyword: null}, numZoomLevels: 16});
 
+    // wanderreitkarte
+    var wanderreitkarte = new OpenLayers.Layer.OSM("Wanderreitkarte", ['http://topo2.wanderreitkarte.de/topo/${z}/${x}/${y}.png'],{tileOptions: {crossOriginKeyword: null}, numZoomLevels: 16});
+
     // ESRI maps
     var ESRI = new OpenLayers.Layer.OSM('ESRI', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${x}.jpg");     
     var ESRIsatellite = new OpenLayers.Layer.OSM('ESRI Satellite', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}.jpg");     
