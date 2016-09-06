@@ -1,0 +1,74 @@
+div.olMap {
+    z-index: 0;
+    padding: 0px!important;
+    margin: 0px!important;
+    cursor: default;
+}
+
+div.olMapViewport {
+    text-align: left;
+}
+
+div.olLayerDiv {
+   -moz-user-select: none;
+}
+
+.olLayerGoogleCopyright {
+    left: 20px!important;
+    bottom: -20px!important;	
+}
+.olLayerGooglePoweredBy {
+    position: absolute!important;
+    left: 90px!important;
+    bottom: -200px!important;   
+}
+.olControlAttribution {
+    font-size: smaller; 
+    right: 3px; 
+    bottom: 4.5em; 
+    position: absolute; 
+    display: block;
+}
+.olControlScale {
+    right: 3px;
+    bottom: 3em;
+    display: block;
+    position: absolute;
+    font-size: smaller;
+}
+.olControlScaleLine {
+   display: block;
+   position: absolute;
+   left: 5px!important;
+   bottom: 8px!important;
+}
+.olControlScaleLineBottom {
+   border: solid 4px black;
+   border-bottom: none;
+   margin-top:-2px;
+   text-align: center;
+   visibility: hidden!important;
+}
+.olControlScaleLineTop {
+   border: solid 4px black;
+   border-top: none;
+   text-align: center;
+}
+
+.olControlPermalink {
+    right: 3px;
+    bottom: 1.5em;
+    display: block;
+    position: absolute;
+    font-size: smaller;
+} 
+
+div.olControlMousePosition {
+    bottom: 0em;
+    right: 3px;
+    display: block;
+    position: absolute;
+    font-family: Arial;
+    font-size: small!important;
+    color: black;
+}
