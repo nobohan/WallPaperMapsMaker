@@ -21,7 +21,7 @@ for(ii in 1:length(layers)){
   
   # 1) Write the input.js file
   s = paste(c('layer = "',layers[ii],'";'), collapse="")
-  write(s,file='./viewer/www/input.js')
+  write(s,file='./ol3/input.js')
   
   # 2) Make a printpage using wkhtmltopdf
   system(paste(c("cd ",getwd(),
@@ -33,7 +33,7 @@ for(ii in 1:length(layers)){
                  "--margin-bottom  0 ",
                  "--margin-top  0 ",
                  "--page-size  A4 ",
-                 "./viewer/www/map.html maps/map", ii,".pdf")
+                 "./ol3/map.html maps/map", ii,".pdf")
                , collapse = ""))
      
   map_list[ii] <- paste(c("maps/map",ii,".pdf "),collapse="")
