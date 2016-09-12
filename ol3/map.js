@@ -3,9 +3,12 @@
 // Sources of the layers
     
 var layers={}
-layers["osm"] = "";
+layers["osm"] = "osm";
 layers["opencyclemap"] = "http://{a-c}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png"
-layers["outdoor"] = "http://{a-c}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png"
+layers["transport_dark "] = "http://{a-c}.tile.thunderforest.com/transport_dark/{z}/{x}/{y}.png"
+layers["transport"] = "http://{a-c}.tile.thunderforest.com/transport/{z}/{x}/{y}.png"
+layers["spinal-map"] = "http://{a-c}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png"
+layers["landscape"] = "http://{a-c}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png"
 // ...
 
     
@@ -23,12 +26,19 @@ function init() {
     // 2) Add layers
     // Add layer function
     var showLayer = function(layername){
-    	var url = layers[layername]
-   	var layer = new ol.layer.Tile({
-   	source: new ol.source.OSM({
-	      url: url 
-	      })
-   	})
+    	var url = layers[layername];
+    	if (url === "osm"){
+    	   var layer = new ol.layer.Tile({
+   	      source: new ol.source.OSM()
+    	   });
+    	}
+    	else{
+   	   var layer = new ol.layer.Tile({
+   	      source: new ol.source.OSM({
+	         url: url 
+	         })
+   	   })
+   	};
 	   olmap.addLayer(layer);
     };    
     
@@ -38,7 +48,12 @@ function init() {
     });*/
     //olmap.addLayer(osmLayer);
 
+
     showLayer(layername);
-    
-    // TO DO: hide ol controls 
+    /*showLayer('http://a.tile.thunderforest.com/transport/${z}/${x}/${y}.png');
+    showLayer('http://a.tile.thunderforest.com/landscape/${z}/${x}/${y}.png');
+    showLayer('http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png');
+    showLayer('http://a.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png');
+    showLayer('http://a.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png');*/
+
 }

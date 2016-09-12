@@ -15,7 +15,7 @@ from pyPdf import PdfFileWriter, PdfFileReader
      #     'ESRI', 'ESRIsatellite', 'ESRItopo',
       #    'gsat', 'gbase', 'ghybrid', 'gnormal',
        #   'map1eu')
-layers = ('osm', 'opencyclemap')
+layers = ('opencyclemap','osm','transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map')
           
 
 # For collating the pdfs
@@ -32,7 +32,7 @@ for ii in range(1,len(layers)):
     
     # 1) Write the input.js file
     f = open('./ol3/input.js','w') # in write mode, the content of the file is deleted once it is open
-    s = 'layer = "' + layers[ii-1]  + '";'
+    s = 'layername = "' + layers[ii-1]  + '";'
     f.write(s)
     f.close()
 
