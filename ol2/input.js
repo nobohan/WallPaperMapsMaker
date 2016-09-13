@@ -1,1 +1,1 @@
-layername = "wanderreitkarte";
+layername = "df_ESRI_satellite";

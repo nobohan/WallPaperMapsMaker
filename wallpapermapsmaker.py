@@ -8,13 +8,12 @@ from pyPdf import PdfFileWriter, PdfFileReader
 
 # Set list of layers
 layers = ('osm',
-         'opencyclemap', 'transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map',
-          'stamen', 'stamen_watercolor',
-          'opentopomap',
-          'wanderreitkarte',
-          'ESRI', 'ESRIsatellite', 'ESRItopo',
-          'gsat', 'gbase', 'ghybrid', 'gnormal',
-          'map1eu')
+          'df_opencyclemap', 'df_transport', 'df_landscape', 'df_outdoor', 'df_transport_dark', 'df_spinal_map',
+          'st_toner', 'st_watercolor',
+          'co_opentopomap',
+          'co_wanderreitkarte',
+          'df_ESRI', 'df_ESRI_satellite', 'df_ESRI_topo',
+          'co_map1eu')
           
 
 # For collating the pdfs

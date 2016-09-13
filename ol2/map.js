@@ -1,56 +1,75 @@
-// Openlayers - WPMM - Julien Minet - julien_wa@yahoo.fr - Avril 2016
+// Openlayers - WPMM - Julien Minet - julien_wa@yahoo.fr - Avril-Sept 2016
  
-// Parametres generaux et definitions des variables
-var map, gnormal, ghyb, gbase, osm, geojson, center;
-var proj = new OpenLayers.Projection("EPSG:3857");
-var dispproj = new OpenLayers.Projection("EPSG:4326");
-var bounds = new OpenLayers.Bounds(4.7, 49.5, 6.2, 50.5);
-bounds.transform(dispproj,proj);
-var apiKey = "Ap9b3XwNvvwAFJhH4FrvBKmisp-lwA6eFcFQ-nFIEYI5Y_BSt6vMZkSBM6Hz_o_V";
 
-// Options de la carte
+// Sources of the layers
+var layers={}
+layers["osm"] = "osm";
+layers["df_opencyclemap"] = "http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png"
+layers["df_transport_dark"] = "http://a.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png"
+layers["df_transport"] = "http://a.tile.thunderforest.com/transport/${z}/${x}/${y}.png"
+layers["df_outdoor"] = "http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png"
+layers["df_spinal_map"] = "http://a.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png"
+layers["df_landscape"] = "http://a.tile.thunderforest.com/landscape/${z}/${x}/${y}.png"
+layers["st_toner"] = "toner";
+layers["st_watercolor"] = "watercolor";
+layers["co_wanderreitkarte"] = "http://topo2.wanderreitkarte.de/topo/${z}/${x}/${y}.png";
+layers["co_opentopomap"] = "http://a.tile.opentopomap.org/${z}/${x}/${y}.png";
+layers["co_map1eu"] = "http://alpha.map1.eu/tiles/${z}/${x}/${y}.jpg";
+layers["df_ESRI"] = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${x}.jpg";
+layers["df_ESRI_satellite"] = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}.jpg";
+layers["df_ESRI_topo"] = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}.jpg";
+
+// General parameters
+var map, center;
+var proj = new OpenLayers.Projection("EPSG:3857");
+var wgs84proj = new OpenLayers.Projection("EPSG:4326");
+var apiKey = "Ap9b3XwNvvwAFJhH4FrvBKmisp-lwA6eFcFQ-nFIEYI5Y_BSt6vMZkSBM6Hz_o_V";  // for Bing maps
+
+
+// Map options
 var options = {
 	controls: [],
 	projection: proj,
-	displayProjection: proj,
-	units: "m",
-	numZoomLevels: 10,
-	maxResolution: 1500,
-	maxExtent: bounds
-	};
+	units: "m"
+};
 
-// Creation de la carte - debut de la fonction init
-function init(layername) {
+// Zoom level & extent
+var zoom = 15;
+var centerPigeon = new OpenLayers.LonLat(5.54036,49.73822);
+var centerArlon = new OpenLayers.LonLat(5.8111,49.6860);
+center = centerArlon;
+
+// Map creation
+function init(layername, zoom, center) {
     map = new OpenLayers.Map('map', options);
  	   
+    // Add layer function
+    var showLayer = function(layername){
+    	var url = layers[layername];
+    	var typeoflayer = layername.substring(0,3);
+    	switch (typeoflayer){
+    		case "df_":  // Case of most layers (default)
+    	      var layer = new OpenLayers.Layer.OSM(layername,[url]);
+    	      break;
+    	      
+    	   case "co_":  // Case layers that need crossOriginKeyword set to null
+    	      var layer = new OpenLayers.Layer.OSM(layername, [url], {tileOptions: {crossOriginKeyword: null}});
+    	      break;
+    	      
+    	   case "osm":  // Case of default OSM layer
+    	      var layer = new OpenLayers.Layer.OSM(layername);
+    	      break;
+
+    	   case "st_":  // Case of Stamen layers
+    	      var layer = new OpenLayers.Layer.Stamen(url);
+    	      break;
+
+    	};
+    	map.addLayer(layer);
+    }
     
-    // Ajout des couches de base
-    // OSM Layers
-    // Mapnik
-    var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
-    // Thunderforest layers
-    var opencyclemap = new OpenLayers.Layer.OSM("TF OpenCycleMap", ['http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png']);
-    var transport = new OpenLayers.Layer.OSM("TF Transport", ['http://a.tile.thunderforest.com/transport/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/transport/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/transport/${z}/${x}/${y}.png']);
-    var landscape = new OpenLayers.Layer.OSM("TF Landscape", ['http://a.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/landscape/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/landscape/${z}/${x}/${y}.png']);
-    var outdoor = new OpenLayers.Layer.OSM("TF Outdoor", ['http://a.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/outdoors/${z}/${x}/${y}.png']);
-    var transport_dark = new OpenLayers.Layer.OSM("TF Transport-dark", ['http://a.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/transport-dark/${z}/${x}/${y}.png']);
-    var spinal_map = new OpenLayers.Layer.OSM("TF Spinal-map (Metal)", ['http://a.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png','http://b.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png','http://c.tile.thunderforest.com/spinal-map/${z}/${x}/${y}.png']);
- 
-    // Stamen
-    var stamen = new OpenLayers.Layer.Stamen("toner");
-    var stamen_watercolor = new OpenLayers.Layer.Stamen("watercolor");
- 
-    // OpenTopoMap
-    var opentopomap = new OpenLayers.Layer.OSM("OpenTopoMap", ['http://a.tile.opentopomap.org/${z}/${x}/${y}.png','http://b.tile.opentopomap.org/${z}/${x}/${y}.png','http://c.tile.opentopomap.org/${z}/${x}/${y}.png'],{tileOptions: {crossOriginKeyword: null}, numZoomLevels: 16});
-
-    // wanderreitkarte
-    var wanderreitkarte = new OpenLayers.Layer.OSM("Wanderreitkarte", ['http://topo2.wanderreitkarte.de/topo/${z}/${x}/${y}.png'],{tileOptions: {crossOriginKeyword: null}, numZoomLevels: 16});
-
-    // ESRI maps
-    var ESRI = new OpenLayers.Layer.OSM('ESRI', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/${z}/${y}/${x}.jpg");     
-    var ESRIsatellite = new OpenLayers.Layer.OSM('ESRI Satellite', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${z}/${y}/${x}.jpg");     
-    var ESRItopo = new OpenLayers.Layer.OSM('ESRI Topo', "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}.jpg");     
-   
+    showLayer(layername);
+    
     // Google Layers
     var gsat = new OpenLayers.Layer.Google("Google Satellite",{type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22, isBaseLayer:true});
     var gnormal = new OpenLayers.Layer.Google( "Google" , {type: google.maps.MapTypeId.NORMAL, numZoomLevels: 22, isBaseLayer:true});
@@ -63,33 +82,13 @@ function init(layername) {
     var baerial = new OpenLayers.Layer.Bing({name: "Bing Aerial", key: apiKey, type: "Aerial"});
 
     // deprecated layers in May 2016
-    //var hikebikemap = new OpenLayers.Layer.OSM("HikeBikeMap", ['http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png']); //deprecated
+    //var hikebikemap = new OpenLayers.Layer.OSM("HikeBikeMap", ['http://toolserver.org/tiles/hikebike/${z}/${x}/${y}.png']); //deprecated
     //var stamen_terrain = new OpenLayers.Layer.Stamen("terrain"); //deprecated
  
-    // map1eu
-    var map1eu = new OpenLayers.Layer.OSM('map1eu', "http://alpha.map1.eu/tiles/${z}/${x}/${y}.jpg", {
-            tileOptions: {
-                crossOriginKeyword: null
-            },
-            numZoomLevels: 18});  
-
-    layer = eval(layername)
-    map.addLayer(layer)
-    //map.addLayers([osm, opencyclemap, outdoor, landscape, opentopomap, stamen, stamen_watercolor, gsat, gbase, ghybrid, gnormal, broad, bhybrid, baerial]);
-
     // Ajout des controles
     map.addControl(new OpenLayers.Control.Navigation());
-    //map.addControl(new OpenLayers.Control.Zoom());
-    //map.addControl(new OpenLayers.Control.LayerSwitcher());
 
-    //var bounds = new OpenLayers.Bounds(5.4, 49.4, 5.55, 49.8); bounds.transform(dispproj,proj);
-    //map.zoomToExtent(bounds)
-
-    zoom = 15
-    centerPigeon = new OpenLayers.LonLat(5.54036,49.73822);
-    centerArlon = new OpenLayers.LonLat(5.8111,49.6860);
-    center = centerArlon;
-    center.transform(dispproj, proj)
+    center.transform(wgs84proj, proj)
     map.setCenter(center,zoom)
 
-}     // fin de la fonction init 
+}   
