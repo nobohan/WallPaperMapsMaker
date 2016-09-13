@@ -1,1 +1,1 @@
-layer = "osm";
+layername = "wanderreitkarte";

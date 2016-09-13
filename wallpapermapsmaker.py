@@ -7,15 +7,14 @@ import subprocess
 from pyPdf import PdfFileWriter, PdfFileReader
 
 # Set list of layers
-#layers = ('osm',
- #         'opencyclemap', 'transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map',
-  #        'stamen', 'stamen_watercolor',
-   #       'opentopomap',
-    #      'wanderreitkarte',
-     #     'ESRI', 'ESRIsatellite', 'ESRItopo',
-      #    'gsat', 'gbase', 'ghybrid', 'gnormal',
-       #   'map1eu')
-layers = ('opencyclemap','osm','transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map')
+layers = ('osm',
+         'opencyclemap', 'transport', 'landscape', 'outdoor', 'transport_dark', 'spinal_map',
+          'stamen', 'stamen_watercolor',
+          'opentopomap',
+          'wanderreitkarte',
+          'ESRI', 'ESRIsatellite', 'ESRItopo',
+          'gsat', 'gbase', 'ghybrid', 'gnormal',
+          'map1eu')
           
 
 # For collating the pdfs
@@ -31,7 +30,7 @@ for ii in range(1,len(layers)):
     print(ii)
     
     # 1) Write the input.js file
-    f = open('./ol3/input.js','w') # in write mode, the content of the file is deleted once it is open
+    f = open('./ol2/input.js','w') # in write mode, the content of the file is deleted once it is open
     s = 'layername = "' + layers[ii-1]  + '";'
     f.write(s)
     f.close()
@@ -46,7 +45,7 @@ for ii in range(1,len(layers)):
                      '--margin-top', '0',
                      '--page-size', 'A4',
                      '--zoom', '10',
-                     './ol3/map.html',
+                     './ol2/map.html',
                      'maps/map'+ str(ii) +'.pdf'])
     
     # 3) Collate all pdf together

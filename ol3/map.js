@@ -5,14 +5,14 @@
 var layers={}
 layers["osm"] = "osm";
 layers["opencyclemap"] = "http://{a-c}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png"
-layers["transport_dark "] = "http://{a-c}.tile.thunderforest.com/transport_dark/{z}/{x}/{y}.png"
+layers["transport_dark"] = "http://{a-c}.tile.thunderforest.com/transport_dark/{z}/{x}/{y}.png"
 layers["transport"] = "http://{a-c}.tile.thunderforest.com/transport/{z}/{x}/{y}.png"
 layers["spinal-map"] = "http://{a-c}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png"
 layers["landscape"] = "http://{a-c}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png"
 // ...
 
     
-function init() {
+function init(layername) {
 
     // 1) Map creation
     var olmap = new ol.Map({

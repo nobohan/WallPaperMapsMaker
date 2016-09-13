@@ -14,6 +14,7 @@ Simply download the application and run the wallpapermapsmaker.py script while c
 ## TAF
 
  * Increase number of layers
+ * Add attribution
 
 ## Future TAF
 
@@ -22,6 +23,7 @@ Simply download the application and run the wallpapermapsmaker.py script while c
    * layers to be printed
  * Host the application
  * Use OpenLayers 3 instead of Openlayers 2
+   * BIG ISSUE! OL3 not working with  wkhtmltopdf. see http://stackoverflow.com/questions/28064345/wkhtmltopdf-openlayers-v3-failed and https://github.com/openlayers/ol3/issues/5214
  * Add something to the map, like layer name or something customized
  
 ## Some notes
