@@ -9,11 +9,16 @@ from pyPdf import PdfFileWriter, PdfFileReader
 # Set list of layers
 layers = ('osm',
           'df_opencyclemap', 'df_transport', 'df_landscape', 'df_outdoor', 'df_transport_dark', 'df_spinal_map',
+          'df_geofabrik_topo',
+          'df_komoot',
           'st_toner', 'st_watercolor',
           'co_opentopomap',
           'co_wanderreitkarte',
-          'df_ESRI', 'df_ESRI_satellite', 'df_ESRI_topo',
-          'co_map1eu')
+          'df_ESRI', 'df_ESRI_topo',
+          'co_map1eu',
+          'co_falk',
+          'co_hyddafull',
+          'co_kompass_summer')
           
 
 # For collating the pdfs
@@ -25,7 +30,7 @@ def append_pdf(input,output):
 output = PdfFileWriter()
 
 # START of the loop, for each layers:
-for ii in range(1,len(layers)):
+for ii in range(1,len(layers)+1):
     print(ii)
     
     # 1) Write the input.js file
@@ -37,13 +42,12 @@ for ii in range(1,len(layers)):
     # 2) Make a printpage using wkhtmltopdf
     subprocess.call(['wkhtmltopdf',
                      '--orientation','Landscape',
-                     '--javascript-delay','8000',
+                     '--javascript-delay','10000',
                      '--margin-left', '0',
                      '--margin-right', '0',
                      '--margin-bottom', '0',
                      '--margin-top', '0',
                      '--page-size', 'A4',
-                     '--zoom', '10',
                      './ol2/map.html',
                      'maps/map'+ str(ii) +'.pdf'])
     
