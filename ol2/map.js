@@ -25,11 +25,10 @@ layers["df_ESRI_satellite"] = "https://server.arcgisonline.com/ArcGIS/rest/servi
 layers["df_ESRI_topo"] = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}.jpg";
 
 // General parameters
-var map, center;
+var map;
 var proj = new OpenLayers.Projection("EPSG:3857");
 var wgs84proj = new OpenLayers.Projection("EPSG:4326");
 var apiKey = "Ap9b3XwNvvwAFJhH4FrvBKmisp-lwA6eFcFQ-nFIEYI5Y_BSt6vMZkSBM6Hz_o_V";  // for Bing maps
-
 
 // Map options
 var options = {
@@ -39,10 +38,8 @@ var options = {
 };
 
 // Zoom level & extent
-var zoom = 14;
-var centerPigeon = new OpenLayers.LonLat(5.54036,49.73822);
-var centerArlon = new OpenLayers.LonLat(5.8111,49.6860);
-center = centerArlon;
+var zoom = zoom;
+var center = new OpenLayers.LonLat(lon,lat);
 
 // Map creation
 function init(layername, zoom, center) {
